@@ -8,7 +8,7 @@ class Screenshot extends React.Component {
     const regex = /^https?:///;
     let imageUrl = this.props.image;
     
-    if (imageUrl = '///') {
+    if (imageUrl == '///') {
       imageUrl = '/';
     }
 
