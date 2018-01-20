@@ -1,27 +1,17 @@
-import puppeteer from 'puppeteer';
+import Nightmare from 'nightmare';
 
 import { getFromCache, setInCache } from './cache';
 
 const takeScreenshot = async (url) => {
-  const browser = await puppeteer.launch({
-    headless: true
-  });
+  const nightmare = Nightmare({ show: false });
 
-  const page = await browser.newPage();
-  await page.setViewport({
-    width: 1024,
-    height: 768,
-    isLandscape: true
-  })
-  await page.goto(url);
+  const buffer = await nightmare
+    .viewport(1024, 768)
+    .goto(url)
+    .wait(1000)
+    .screenshot();
 
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1500);
-  });
-
-  const buffer = await page.screenshot();
-
-  await browser.close();
+  await nightmare.end();
 
   return buffer;
 };
