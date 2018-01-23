@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
         tiles: action.data.sites.map((s) => {
           return {
             name: s.name.replace('/', '').split(/(?=[A-Z])/).join(" "),
-            url: s.url
+            url: s.url == '///' ? '/' : s.url
           }
         })
       }
