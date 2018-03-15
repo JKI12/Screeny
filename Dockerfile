@@ -16,4 +16,8 @@ WORKDIR /app/HomeLocalHomepage
 
 COPY --from=builder /build .
 
+RUN ["rm", "-rf", "node_modules"];
+
+RUN ["npm", "install", "--only=production"]
+
 ENTRYPOINT [ "npm", "start" ]
