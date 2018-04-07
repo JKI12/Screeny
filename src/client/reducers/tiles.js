@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
         loading: false,
         tiles: t.sort((siteOne, siteTwo) => {
           if (siteOne.name.toLowerCase().includes('homepage') || siteTwo.name.toLowerCase().includes('homepage')) {
-            return 1;
+            return -1;
           };
 
           if (siteOne.name < siteTwo.name) {
